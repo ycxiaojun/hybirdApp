@@ -83,11 +83,17 @@ export class PointsPage {
                         this.m_nGainPointPageCount = data.Data.PageCount;
                         if (nPageNo == 1) {
                             this.m_lsGainPointList = data.Data;
+                            this.m_lsGainPointList.DataSet.forEach(ele => {
+                                ele.CreateTime = this.spliceTime(ele.CreateTime);
+                                ele.ExpireTime = this.spliceTime(ele.ExpireTime);
+                            })
                             this.m_objLoadingCompleted.gatherPoint = true;
                         } else {
                             var Datalength = data.Data.DataSet.length;
                             for (var i = 0; i < Datalength; i++) {
                                 this.getPaythod(data.Data.DataSet);
+                                data.Data.DataSet[i].CreateTime = this.spliceTime(data.Data.DataSet[i].CreateTime);
+                                data.Data.DataSet[i].ExpireTime = this.spliceTime(data.Data.DataSet[i].ExpireTime);
                                 this.m_lsGainPointList.DataSet.push(data.Data.DataSet[i]);
                             }
                         }
@@ -112,12 +118,16 @@ export class PointsPage {
                         this.m_nUsedPointPageCount = data.Data.PageCount;
                         if (nPageNo == 1) {
                             this.m_lsUsedPointList = data.Data;
+                            this.m_lsUsedPointList.DataSet.forEach(ele => {
+                                ele.CreateTime = this.spliceTime(ele.CreateTime);
+                            });
                             this.getPaythod(this.m_lsUsedPointList.DataSet);
                             this.m_objLoadingCompleted.usedPoint = true;
                         } else {
                             var Datalength = data.Data.DataSet.length;
                             for (var i = 0; i < Datalength; i++) {
                                 this.getPaythod(data.Data.DataSet);
+                                data.Data.DataSet[i].CreateTime = this.spliceTime(data.Data.DataSet[i]);
                                 this.m_lsUsedPointList.DataSet.push(data.Data.DataSet[i]);
                             }
                         }
@@ -195,5 +205,11 @@ export class PointsPage {
                     break;
             }
         }
+    }
+
+    spliceTime (time: any): any {
+        let _date = time.split('T')[0];
+        let _time = time.split('T')[1];
+        return this.m_objContextService.FormatDate(_date.split('-')[0], _date.split('-')[1], _date.split('-')[2]) + ' ' + _time;
     }
 }

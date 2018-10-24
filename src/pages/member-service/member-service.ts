@@ -222,6 +222,7 @@ export class MemberServicePage {
 
     //前往更新房间服务页面
     toUpdateRoomService (roomServiceInfo: QueryMemberRoomServiceResult): void {
+        event.stopPropagation();
         this.m_objApp.getRootNav().push('AddMebRoomServicePage',{
             roomServiceInfo: roomServiceInfo,
             clientUserId: this.m_nMebId,
@@ -233,6 +234,7 @@ export class MemberServicePage {
 
     // 取消房间服务
     cancelRoomService (roomServiceInfo: QueryMemberRoomServiceResult): void {
+        event.stopPropagation();
         const prompt = this.m_objAlertCtrl.create({
             title: this.m_objI18NPipe.transform('请输入取消原因[请输入取消原因]'),
             inputs: [

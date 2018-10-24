@@ -32,8 +32,8 @@
                     </li>
                 </ul>
                 <ul class="deposit_list">
-                    <li class="deposit_item" *ngFor="let list of m_lsGainPointList.DataSet">
-                        <ul>
+                    <li class="deposit_item pq-flex" *ngFor="let list of m_lsGainPointList.DataSet">
+                        <!-- <ul>
                             <li class="deposit_item_title">
                                 <span>{{'获取酒店[获取酒店]' | i18n}}：<em>{{list.ChainName}}</em></span>
                                 <span>{{'获取时间[获取时间]' | i18n}}：<em>{{(list.CreateTime.replace('T', " ")).substring(0, list.CreateTime.length - 3)}}</em></span>
@@ -42,7 +42,14 @@
                                 <span>{{'获取数量[获取数量]' | i18n}}：<em>{{list.Point}}</em></span>
                                 <span>{{'过期时间[过期时间]' | i18n}}：<em>{{(list.ExpireTime.replace('T', " ")).substring(0, list.ExpireTime.length - 3)}}</em></span>
                             </li>
-                        </ul>
+                        </ul> -->
+                        <div class="deposit_item_info pq-flex">
+                            <p>{{list.ChainName}}</p>
+                            <p>{{(list.CreateTime.replace('T', " ")).substring(0, list.CreateTime.length - 3)}} - {{(list.ExpireTime.replace('T', " ")).substring(0, list.ExpireTime.length - 3)}}</p>
+                        </div>
+                        <div class="deposit_item_value pq-flex font-theme-color">
+                            + {{list.Point}}
+                        </div>
                     </li>
                 </ul>
                 <p class="empty_show" *ngIf="m_nGainPointHaveMoreData">{{'暂无更多记录[暂无更多记录]' | i18n}}</p>
@@ -70,8 +77,8 @@
                     </li>
                 </ul>
                 <ul class="deposit_list">
-                    <li class="deposit_item" *ngFor="let list of m_lsUsedPointList.DataSet">
-                        <ul>
+                    <li class="deposit_item pq-flex" *ngFor="let list of m_lsUsedPointList.DataSet">
+                        <!-- <ul>
                             <li class="deposit_item_title">
                                 <span>{{'消费酒店[消费酒店]' | i18n}}：<em>{{list.ChainName}}</em></span>
                             </li>
@@ -80,7 +87,14 @@
                                 <span>{{'数量[数量]' | i18n}}：<em>{{list.Point}}</em></span>
                                 <span>{{'时间[时间]' | i18n}}：<em>{{(list.CreateTime.replace('T', " ")).substring(0, list.CreateTime.length - 3)}}</em></span>
                             </li>
-                        </ul>
+                        </ul> -->
+                        <div class="deposit_item_info pq-flex">
+                            <p>{{list.ChainName}}({{list.TypeName}})</p>
+                            <p>{{(list.CreateTime.replace('T', " ")).substring(0, list.CreateTime.length - 3)}}</p>
+                        </div>
+                        <div class="deposit_item_value pq-flex font-theme-color">
+                            - {{list.Point}}
+                        </div>
                     </li>
                 </ul>
                 <p class="empty_show" *ngIf="m_nUsedPointHaveMoreData">{{'暂无更多记录[暂无更多记录]' | i18n}}</p>

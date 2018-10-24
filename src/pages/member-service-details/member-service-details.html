@@ -19,7 +19,7 @@
         </li>
     </ul>
     <textarea placeholder="" [(ngModel)]="m_objRoomServiceInfo.RoomServiceRemark" readonly></textarea>
-    <div class="operationBtn pq-flex">
+    <div class="operationBtn pq-flex" *ngIf="m_objRoomServiceInfo.ServiceStatus===1">
         <button ion-button (click)="toUpdateRoomService()">修改服务</button>
         <button ion-button (click)="cancelRoomService()">取消服务</button>
     </div>

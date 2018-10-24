@@ -249,9 +249,10 @@ ion-input[type="number"] {
     }
     //加载动画颜色
     .pq-load-style{
-        -moz-box-shadow: 0 $loadingBoxShadow 0 #ffb843 inset;
-        -webkit-box-shadow: 0 $loadingBoxShadow 0 #ffb843 inset;
-        box-shadow: 0 $loadingBoxShadow 0 #ffb843 inset;
+        border-color: $primary;
+        // -moz-box-shadow: 0 $loadingBoxShadow 0 #ffb843 inset;
+        // -webkit-box-shadow: 0 $loadingBoxShadow 0 #ffb843 inset;
+        // box-shadow: 0 $loadingBoxShadow 0 #ffb843 inset;
     }
     .theme-bgcolor{
         background-color: $primary;
@@ -345,9 +346,10 @@ ion-input[type="number"] {
     }
     //加载动画颜色
     .pq-load-style{
-        -moz-box-shadow: 0 $loadingBoxShadow 0 $secondary inset;
-        -webkit-box-shadow: 0 $loadingBoxShadow 0 $secondary inset;
-        box-shadow: 0 $loadingBoxShadow 0 $secondary inset;
+        border-color: $secondary;
+        // -moz-box-shadow: 0 $loadingBoxShadow 0 $secondary inset;
+        // -webkit-box-shadow: 0 $loadingBoxShadow 0 $secondary inset;
+        // box-shadow: 0 $loadingBoxShadow 0 $secondary inset;
     }
     .theme-bgcolor{
         background-color: $secondary;
@@ -391,10 +393,13 @@ ion-input[type="number"] {
         .pq-load-style{
             width: rem(45);
             height: rem(45);
-            -moz-border-radius: rem(45);
-            -webkit-border-radius: rem(45);
-            border-radius: rem(45);
-            animation: rotate-360 1s linear infinite;
+            border-radius: 100%;
+            border-style: solid;
+            border-width: rem(2);
+            border-top-color: transparent;
+            border-right-color: transparent; 
+            border-bottom-color: transparent;
+            animation: rotate-360 0.7s linear infinite;
         }
         @keyframes rotate-360 {
             from {

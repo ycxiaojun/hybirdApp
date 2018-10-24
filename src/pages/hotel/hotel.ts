@@ -126,6 +126,7 @@ export class HotelPage{
                 })
             })
             this.getMebRoomRateTypeId();
+            console.log(this.m_objRoomTypes);
         })
     }
     // 获取用户价格类型ID

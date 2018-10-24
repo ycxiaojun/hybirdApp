@@ -85,15 +85,20 @@ export class DepositPage {
                         this.m_nStoreValueListPageCount = data.Data.PageCount;
                         if (nPageNo == 1) {
                             this.m_lsStoreValueList = data.Data;
+                            this.m_lsStoreValueList.DataSet.forEach(ele => {
+                                ele.CreateTime = this.spliceTime(ele.CreateTime);
+                            });
                             this.getPaythod(this.m_lsStoreValueList.DataSet);
                             this.m_objLoadingCompleted.storeValueList = true;
                         } else {
                             var Datalength = data.Data.DataSet.length;
                             for (var i = 0; i < Datalength; i++) {
                                 this.getPaythod(data.Data.DataSet);
+                                data.Data.DataSet[i].CreateTime = this.spliceTime(data.Data.DataSet[i].CreateTime);
                                 this.m_lsStoreValueList.DataSet.push(data.Data.DataSet[i]);
                             }
                         }
+
                         this.m_bRefreshList = true;
                         if (fn) fn();
                         if (data.Data.PageNo >= data.Data.PageCount) this.m_nStoreValueHaveMoreData = true;
@@ -115,12 +120,16 @@ export class DepositPage {
                             //获取支付类型
                             this.getHotelName(data.Data.DataSet);
                             this.m_lsPresentStoreValueList = data.Data;
+                            this.m_lsPresentStoreValueList.DataSet.forEach(ele => {
+                                ele.CreateTime = this.spliceTime(ele.CreateTime);
+                            });
                             this.m_objLoadingCompleted.presentStoreValueList = true;
                         } else {
                             var Datalength = data.Data.DataSet.length;
                             for (var i = 0; i < Datalength; i++) {
                                 //获取支付类型
                                 this.getPaythod(data.Data.DataSet);
+                                data.Data.DataSet[i].CreateTime = this.spliceTime(data.Data.DataSet[i].CreateTime);
                                 this.m_lsPresentStoreValueList.DataSet.push(data.Data.DataSet[i]);
                             }
                         }
@@ -232,5 +241,11 @@ export class DepositPage {
                 }
             }
         }
+    }
+
+    spliceTime (time: any): any {
+        let _date = time.split('T')[0];
+        let _time = time.split('T')[1];
+        return this.m_objContextService.FormatDate(_date.split('-')[0], _date.split('-')[1], _date.split('-')[2]) + ' ' + _time;
     }
 }

@@ -101,7 +101,7 @@
                 <img src="assets/imgs/hotel-img/{{m_nHotelId}}/room/room-img/{{item.RoomTypeID}}.jpg" alt="">
                 <div class="pq-room-info pq-flex">
                     <p class="pq-roomTypeName">{{item.RoomTypeName}}</p>
-                    <p class="pq-defaultPrice"><span>{{item.RetailPrice}}</span><span>({{'门市价[门市价]' | i18n}})</span></p>
+                    <p class="pq-defaultPrice"><span>{{item.RoomRate}}</span><span>({{'门市价[门市价]' | i18n}})</span></p>
 					<p *ngIf="m_objContextService.isLogin()" class="font-theme-color">
 						{{m_objThemeService.m_objTheme.CountrySomeInfo.CurrencySymbol}}<span class="member-price">{{item.MebRoomRate}}</span>
 						<span>{{'专属会员价[专属会员价]' | i18n}}</span>
