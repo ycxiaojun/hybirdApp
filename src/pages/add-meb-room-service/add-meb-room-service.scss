@@ -1,0 +1,87 @@
+page-add-meb-room-service {
+	background-color: #fff;
+
+	.roomServiceFrom{
+		width: 100%;
+		
+		>li{
+			justify-content: space-between;
+			padding: 0 rem(12);
+			border-bottom: 1px solid #ededed;
+
+			.roomServiceFromTitle{
+				width: 30%;
+				height: rem(44);
+				line-height: rem(44);
+			}
+
+			.roomServiceFromValue{
+				width: 60%;
+				height: rem(44);
+				align-items: center;
+				justify-content: flex-end;
+			}
+
+			ul{
+				width: 70%;
+
+				li{
+					height: rem(44);
+					color: #999;
+					align-items: center;
+					justify-content: space-between;
+					padding-left: 10%;
+				}
+
+				li:not(:last-child){
+					border-bottom: 1px solid #ededed;
+				}
+			}
+
+			ion-icon{
+				font-size: rem(24);
+			}
+
+		}
+
+		>li:last-child{
+			border-bottom: 1px solid #ededed;
+		}
+
+		.handleTime .roomServiceFromValue ion-label{
+			text-align: right;
+		}
+	}
+
+	.addRoomServiceRemark{
+		width: 100%;
+		padding: rem(6);
+		
+		textarea{
+			width: 100%;
+			border: 1px solid #ddd;
+			height: rem(100);
+			padding: rem(6);
+		}
+	}
+
+	.remarkLengthBar{
+		text-align: right;
+		font-size: rem(12);
+		color: #888;
+	}
+
+	.addServiceBtn{
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		height: rem(44);
+		background-color: #808080;
+		color: #fff;
+		text-align: center;
+		line-height: rem(44);
+	}
+}
+.item-ios.item-block .item-inner{
+	border-bottom: 0;
+}

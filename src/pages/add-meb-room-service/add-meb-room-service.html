@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{m_sPageName}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ul class="roomServiceFrom">
+        <li class="serviceTypeList pq-flex">
+            <div class="serviceItemName roomServiceFromTitle">服务类型</div>
+            <ul>
+                <li class="pq-flex" *ngFor="let item of m_lsRoomSericeTypeList; let i = index" (click)="selectRoomService(i,item.CodeID)">
+                    <span>{{item.CodeName}}</span>
+                    <div class="pq-flex">
+                        <ion-icon name="md-checkmark-circle" color="{{m_objThemeService.colorTheme()}}" *ngIf="item.selected"></ion-icon>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="serviceSubType pq-flex">
+            <div class="serviceItemName roomServiceFromTitle">服务子类</div>
+            <ul>
+                <li class="pq-flex" *ngFor="let item of m_lsRoomSubRoomServiceTypeList; let i = index" (click)="selectSubRoomService(i,item.CodeID)">
+                    <span>{{item.CodeName}}</span>
+                    <div class="pq-flex">
+                        <ion-icon name="md-checkmark-circle" color="{{m_objThemeService.colorTheme()}}" *ngIf="item.selected"></ion-icon>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="addRoomServiceRemark">
+        <textarea placeholder="描述（不少于10个字）" [(ngModel)]="m_sRemark"></textarea>
+    </div>
+    <div class="remarkLengthBar" *ngIf="m_sRemark.length<10">
+        还差<span class="font-theme-color">{{10 - m_sRemark.length}}</span>个字！
+    </div>
+    <div class="addServiceBtn" [ngClass]="{'theme-bgcolor':m_sRemark.length>9}" (click)="addService()">增加客房服务</div>
+</ion-content>

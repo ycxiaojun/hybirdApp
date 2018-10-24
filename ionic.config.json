@@ -1,0 +1,7 @@
+{
+  "name": "hybirdApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

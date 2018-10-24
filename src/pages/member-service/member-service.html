@@ -1,0 +1,77 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'会员服务[会员服务]' | i18n}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <div class="page {{m_objThemeService.colorTheme()}}">
+        <div class="order-bar" *ngIf="m_bHasCheckInOrders">
+            <div class="order-bar-header pq-flex">
+                <div class="pq-flex prevBtn" ngClass="{font-theme-color:m_bCanPrev}">{{'上一个[上一个]' | i18n}}</div>
+                <div class="pq-flex">{{m_objMebFolio.FolioID}}</div>
+                <div class="pq-flex nextBtn" ngClass="{font-theme-color:m_bCanNext}">{{'下一个[下一个]' | i18n}}</div>
+            </div>
+            <div class="order-bar-main">
+                <ul>
+                    <li class="pq-flex">
+                        <span>{{'入住人姓名[姓名]' | i18n}}</span><span>{{m_objMebFolio.Name}}</span>
+                    </li>
+                    <li class="pq-flex">
+                        <span>{{'入住人手机号[手机号]' | i18n}}</span><span>{{m_objMebFolio.Phone}}</span>
+                    </li>
+                    <li class="pq-flex">
+                        <span>{{'入住酒店[入住酒店]' | i18n}}</span><span>{{m_objMebFolio.ChainName}}</span>
+                    </li>
+                    <li class="pq-flex">
+                        <span>{{'入住房型[入住房型]' | i18n}}</span><span>{{m_objMebFolio.RoomTypeName}}</span>
+                    </li>
+                    <li class="pq-flex">
+                        <span>{{'入住房号[入住房号]' | i18n}}</span><span>{{m_objMebFolio.RoomNo}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="roomServiceHistory">
+            <div class="roomServiceHistoryTitle">{{'会员服务历史[会员服务历史]' | i18n}}</div>
+            <ul class="roomServiceHistoryTab pq-flex">
+                <li *ngFor="let item of m_lsRoomServiceStateList; let i = index" (click)="tabToggle(i)" [@tabToggle]="item.animateState" [ngClass]="{'selected': item.isSelected}">
+                    <div class="pq-flex">
+                        <span>{{item.name}}</span>
+                    </div>
+                </li>
+            </ul>
+            <div class="roomServiceHistoryList">
+                <p *ngIf="m_lsRoomServiceStateList[m_nShowRoomServiceIndex].data==0">{{m_lsRoomServiceStateList[m_nShowRoomServiceIndex].emptyMsg}}</p>
+                <ul *ngIf="m_lsRoomServiceStateList[m_nShowRoomServiceIndex].data!=0">
+                    <li *ngFor="let item of m_lsRoomServiceStateList[m_nShowRoomServiceIndex].data" (click)="toMebRoonServiceDetailsPage(item)">
+                        <div class="roomServiceHistoryItem" [ngClass]="{'roomServiceCompelete': m_nShowRoomServiceIndex==2, 'roomServiceCancel': m_nShowRoomServiceIndex==3}">
+                            <div class="roomServiceHistoryItemTitle pq-flex"
+                            [ngClass]="{'theme-bgcolor': m_nShowRoomServiceIndex==0||m_nShowRoomServiceIndex==1}">
+                                <span>{{m_lsRoomServiceStateList[m_nShowRoomServiceIndex].name}}</span><span>{{item.CreateTime}}</span>
+                            </div>
+                            <ul class="roomServiceHistoryItemContent">
+                                <li class="pq-flex">
+                                    <span>{{'服务类型[服务类型]' | i18n}}：</span><span>{{item.RoomServiceTypeName}}</span>
+                                </li>
+                                <li class="pq-flex"> 
+                                    <span>{{'服务子类[服务子类]' | i18n}}：</span><span>{{item.RoomServiceSubTypeName}}</span>
+                                </li>
+                                <li class="pq-flex"> 
+                                    <span>{{'服务描述[服务描述]' | i18n}}：</span><span>{{item.RoomServiceRemark}}</span>
+                                </li>
+                                <li class="pq-flex flex-end" *ngIf="m_nShowRoomServiceIndex==0">
+                                    <div class="theme-bgcolor" (click)="toUpdateRoomService(item)">{{'修改服务[修改服务]' | i18n}}</div>
+                                    <div class="theme-bgcolor" (click)="cancelRoomService(item)">{{'取消服务[取消服务]' | i18n}}</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="roomServiceBtn pq-flex theme-bgcolor" (click)="toAddMebRoomServicePage()">{{'新增客房服务[新增客房服务]' | i18n}}</div>
+    </div>
+    <div class="empty-bar"  *ngIf="!m_bHasCheckInOrders">
+        {{'您暂无入住订单[您暂无入住订单]' | i18n}}
+    </div>
+</ion-content>

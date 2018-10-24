@@ -1,0 +1,53 @@
+<ion-header *ngIf="m_objContextService.m_isWeiXin" class="{{m_objThemeService.colorTheme()}}">
+  <ion-navbar>
+    <ion-title>{{'我的预约[我的预约]' | i18n}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="{{m_objThemeService.colorTheme()}} pq-bg-light-white">
+  <div class="content">
+    <div *ngIf="m_objContextService.isLogin()" id="OrderList">
+      <ul class="orderList">
+        <li class="orderItem" *ngFor="let list of m_lsBookShowRoomList">
+          <div class="order_title" [ngStyle]="{'background-color':false ? 'rgb(205,205,205)' : ''}">
+            <p class="hotel_name">{{list.ChainName}}</p>
+            <p class="live_time">
+              <span>{{list.ShowRoomDate.toString().replace("T"," ").substring(0,list.ShowRoomDate.toString().replace("T"," ").length - 3)}}</span>
+              ({{'看房日期[看房日期]' | i18n}})
+              <!-- <span>&nbsp;<em>{{list.NightCount}}</em>晚</span> -->
+            </p>
+          </div>
+          <div class="orderItem_content">
+            <p class="folio_id"><em class="folio_id_txt font-color">{{list.RoomTypeName}}</em></p>
+            <p class="hotel_address">{{list.ChainAddress}}</p>
+            <p class="folio_state flex_box">
+              <span>{{'姓名[姓名]' | i18n}}：{{list.ContractName}}</span>
+            </p>
+            <p class="folio_state flex_box">
+              <span>{{'价格[价格]' | i18n}}：<em class="folio_price">{{m_objThemeService.m_objTheme.CountrySomeInfo.CurrencySymbol}}{{list.PriceBegin}}&nbsp;&nbsp;-&nbsp;&nbsp;{{m_objThemeService.m_objTheme.CountrySomeInfo.CurrencySymbol}}{{list.PriceEnd}}</em></span>
+              <span>{{'预约状态[预约状态]' | i18n}}：<em class="folio_state_txt font-color">{{parseStateText(list.BookShowRoomStatus)}}</em></span>
+            </p>
+            <p *ngIf="list.OtherRoomNoList!=''" class="folio_state flex_box">
+              <span>{{'预约房号[预约房号]' | i18n}}：{{list.OtherRoomNoList}}</span>
+            </p>
+            <p class="folio_state flex_box">
+              <span>{{'备注[备注]' | i18n}}：{{list.BookRemark}}</span>
+            </p>
+            <div class="btn_list flex_box">
+              <div *ngIf="list.BookShowRoomStatus != 4" class="delete_folio flex_box" (click)="cancelBookShowRoom(list.BookShowRoomID)">
+                <p>{{'取消预约[取消预约]' | i18n}}</p>
+              </div>
+              <div *ngIf="list.BookShowRoomStatus != 4" class="delete_folio flex_box" (click)="changeBookShowRoom(list.BookShowRoomID,list.ChainID)">
+                <p>{{'修改预约[修改预约]' | i18n}}</p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <p class="empty_show" *ngIf="m_bHaveMoreData">{{'暂无更多记录[暂无更多记录]' | i18n}}</p>
+      <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())" *ngIf="!m_bHaveMoreData">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+  </div>
+</ion-content>

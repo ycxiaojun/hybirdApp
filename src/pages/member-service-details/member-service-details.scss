@@ -1,0 +1,29 @@
+page-member-service-details {
+	.roomServiceForm{
+		width: 100%;
+		overflow: hidden;
+
+		li{
+			width: 100%;
+			height: rem(40);
+			border-bottom: 1px solid #ddd;
+			align-items: center;
+			justify-content: space-between;
+			font-size: rem(14);
+			color: #808080;
+		}
+	}
+	textarea{
+		margin: rem(12) 0;
+		width: 100%;
+		height: rem(100);
+		text-align: left;
+		text-indent: 2em;
+		padding: rem(6);
+		border: 1px solid #ddd;
+		color: #808080;
+	}
+	.operationBtn{
+		justify-content: flex-end;
+	}
+}

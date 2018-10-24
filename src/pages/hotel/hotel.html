@@ -1,0 +1,121 @@
+<ion-header *ngIf="m_objContextService.m_isWeiXin">
+    <ion-navbar>
+		<ion-icon *ngIf="m_bIsReservation" name="arrow-back" class="dismiss" (click)="back()"></ion-icon>
+		<ion-title *ngIf="!m_bIsReservation">{{m_sBrandName}} | {{m_sChainName}}</ion-title>
+		<ion-title *ngIf="m_bIsReservation">{{'选择房型[选择房型]' | i18n}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="{{m_objThemeService.colorTheme()}} pq-bg-light-white">
+	<!-- 酒店轮播栏 -->
+    <div *ngIf="!m_bIsReservation" class="pq-hotel-slide-bar">
+		<ion-slides pager loop="true" autoplay="3000" speed="500">
+			<ion-slide>
+				<img src="assets/imgs/slide-img/banner1.png" alt="">
+			</ion-slide>
+			<ion-slide>
+				<img src="assets/imgs/slide-img/banner2.png" alt="">
+			</ion-slide>
+			<ion-slide>
+				<img src="assets/imgs/slide-img/banner3.png" alt="">
+			</ion-slide>
+		</ion-slides>
+	</div>
+
+	<!-- 酒店信息栏 -->
+	<div *ngIf="!m_bIsReservation" class="pq-hotel-info-list">
+		<div class="pq-hotel-info-item pq-flex" (click)="goHotelComment()">
+			<div class="pq-hotel-info-msg pq-flex">
+				<span class="comment-score font-theme-color">{{m_nCommentScore}}</span>分
+				<div class="star-box  font-theme-color">
+					<div class="star-top" [ngStyle]="{'width':m_nStarNumber + '%'}">
+						<i class="iconfont">&#xe60a;</i>
+						<i class="iconfont">&#xe60a;</i>
+						<i class="iconfont">&#xe60a;</i>
+						<i class="iconfont">&#xe60a;</i>
+						<i class="iconfont">&#xe60a;</i>
+					</div>
+					<div class="star-bottom">
+						<i class="iconfont">&#xe60a;</i>
+						<i class="iconfont">&#xe60a;</i>
+						<i class="iconfont">&#xe60a;</i>
+						<i class="iconfont">&#xe60a;</i>
+						<i class="iconfont">&#xe60a;</i>
+					</div>
+				</div>
+			</div>
+			<div class="pq-hotel-info-btn pq-flex font-theme-color">
+				{{'查看[查看]' | i18n}}{{m_nCommentCount}}{{'条评论[条评论]' | i18n}}
+				<i class="iconfont">&#xe636;</i>
+			</div>
+		</div>
+		<div class="pq-hotel-info-item pq-flex" (click)="goHotelMap()">
+			<div class="pq-hotel-info-msg pq-flex">
+				{{m_sAddress}}
+			</div>
+			<div class="pq-hotel-info-btn pq-flex font-theme-color">
+				{{'地图[地图]' | i18n}}
+				<i class="iconfont">&#xe636;</i>
+			</div>
+		</div>
+		<div class="pq-hotel-info-item pq-flex" (click)="goHotelDetails()">
+			<div class="pq-hotel-info-msg pq-flex">
+				<img src="{{m_sApiUrl + 'Images/MobileChainRoomService/' + item.Remark + '.png'}}" alt="" *ngFor="let item of m_objChainRoomServiceInfo">
+			</div>
+			<div class="pq-hotel-info-btn pq-flex font-theme-color">
+				{{'设施[设施]' | i18n}}
+				<i class="iconfont">&#xe636;</i>
+			</div>
+		</div>
+	</div>
+
+	<!-- 分隔条	 -->
+	<div *ngIf="!m_bIsReservation" class="pq-gray-split"></div>
+
+	<!-- 日期选择栏 -->
+    <div *ngIf="!m_bIsReservation" class="pq-date-picker" (click)="goDatePicker()">
+        <div class="check_in pq-flex">
+			<p>{{'入住[入住]' | i18n}}</p>
+			<p class="time font-color">{{m_objMyDateService.m_objDate.checkInDate._date}}</p>
+		</div>
+		<div class="date_num pq-flex">
+			<div class="num_box pq-flex">
+				<span class="hotel_dayNum"><i *ngIf="m_objContextService.language == 2" style="font-style:normal;">{{'共[共]' | i18n}}</i>{{m_objMyDateService.m_objDate.dayCount}}{{'晚[晚]' | i18n}}</span>
+			</div>
+		</div>
+		<div class="check_out pq-flex">
+			<p>{{'离店[离店]' | i18n}}</p>
+			<p class="time font-color">{{m_objMyDateService.m_objDate.checkOutDate._date}}</p>
+		</div>
+		<div class="line"></div>
+	</div>
+
+	<!-- 分隔条 -->
+	<div *ngIf="!m_bIsReservation" class="pq-gray-split"></div>
+
+	<!-- 酒店房型列表 -->
+    <div class="pq-roomType">
+        <div class="pq-roomType-item pq-flex" *ngFor="let item of m_objRoomTypes; let i = index">
+            <!-- <div class="pq-roomType-item-msg" (click)="openRoomDetails(item.RoomTypeID,i,item.RoomTypeName)"> -->
+			<div class="pq-roomType-item-msg" (click)="roomTypeItemClickEv(1, i, item)">
+                <img src="assets/imgs/hotel-img/{{m_nHotelId}}/room/room-img/{{item.RoomTypeID}}.jpg" alt="">
+                <div class="pq-room-info pq-flex">
+                    <p class="pq-roomTypeName">{{item.RoomTypeName}}</p>
+                    <p class="pq-defaultPrice"><span>{{item.RetailPrice}}</span><span>({{'门市价[门市价]' | i18n}})</span></p>
+					<p *ngIf="m_objContextService.isLogin()" class="font-theme-color">
+						{{m_objThemeService.m_objTheme.CountrySomeInfo.CurrencySymbol}}<span class="member-price">{{item.MebRoomRate}}</span>
+						<span>{{'专属会员价[专属会员价]' | i18n}}</span>
+					</p>
+                    <p *ngIf="!m_objContextService.isLogin()" (click)="roomTypeItemClickEv(2)" class="font-theme-color">{{'登录查看专属会员价[登录查看专属会员价]' | i18n}}</p>
+                </div>
+            </div>
+            <div class="pq-roomType-item-btn">
+                <div class="pq-room-btn">
+					<span *ngIf="this.m_objContextService.isLogin() && m_objContextService.language == 2" (click)="goReservantion(item.RoomTypeID,item.RoomTypeName)">{{'预约看房[预约看房]' | i18n}}</span>
+					<button *ngIf="!m_bIsReservation" ion-button (click)="roomTypeItemClickEv(3,i,item)" class="color-white background">{{'预订[预订]' | i18n}}</button>
+					<i *ngIf="m_bIsReservation" (click)="selectReservationRoomType(item.RoomTypeID,item.RoomTypeName)" class="iconfont">&#xe623;</i>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

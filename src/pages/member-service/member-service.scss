@@ -1,0 +1,219 @@
+page-member-service {
+	.page{
+		width: 100%;
+		overflow: hidden;
+
+		.order-bar{
+			width: 100%;
+
+			.order-bar-header{
+				width: 100%;
+				height: rem(40);
+				align-items: center;
+				justify-content: space-between;
+				border-bottom: 1px solid #ddd;
+				padding: 0 rem(12);
+				background-color: #fff;
+
+				div{
+					align-items: center;
+					height: 100%;
+				}
+
+				.prevBtn, .nextBtn{
+					color: #aaa;
+				}
+			}
+
+			.order-bar-main{
+				width: 100%;
+				overflow: hidden;
+				padding: rem(10);
+
+				ul{
+					width: 100%;
+					background-color: #fff;
+					border-radius: rem(5);
+					padding: 0 rem(12);
+					box-shadow: 0 0 5px 0 #d0d0d0;
+
+					li{
+						align-items: center;
+						justify-content: space-between;
+						width: 100%;
+						height: rem(40);
+
+						span{
+							width: 50%;
+						}
+
+						span:first-child{
+							color: #505050;
+						}
+
+						span:last-child{
+							color: #909090;
+							text-align: right;
+						}
+					}
+
+					li:not(:last-child){
+						border-bottom: 1px solid #ddd;
+					}
+				}
+				
+				
+			}
+		}
+
+		.roomServiceBtn{
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			height: rem(44);
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	.roomServiceHistory{
+		width: 100%;
+		overflow: hidden;
+
+		.roomServiceHistoryTitle{
+			padding: rem(12);
+			font-size: rem(12);
+			color: #808080;
+		}
+
+		.roomServiceHistoryTab{
+			width: 100%;
+			align-items: center;
+
+			>li{
+				width: 25%;
+				height: rem(32);
+				color: #808080;
+				padding: 0 rem(12);
+				background-color: #fff;
+				font-size: rem(12);
+
+				>div{
+					height: rem(32);
+					align-items: center;
+					justify-content: center;
+				}
+
+				.roomServiceList{
+					li{
+						height: rem(32);
+					}
+				}
+			}
+			
+			li:not(:last-child){
+				border-bottom: 1px solid #ededed;
+			}
+		}
+
+		.roomServiceHistoryList{
+			width: 100%;
+
+			p{
+				text-align: center;
+				padding: rem(12);
+			}
+
+			>ul{
+				width: 100%;
+				padding: rem(12);
+				margin-bottom: rem(40);
+
+				>li{
+					width: 100%;
+					background-color: #fff;
+					border-radius: rem(6);
+					box-shadow: 0 0 5px 0 #d0d0d0;
+					margin-bottom: rem(12);
+
+					.roomServiceHistoryItem{
+						
+						.roomServiceHistoryItemTitle{
+							width: 100%;
+							height: rem(30);
+							padding: rem(6) rem(10);
+							border-top-left-radius: rem(6);
+							border-top-right-radius: rem(6);
+							align-items: center;
+							justify-content: space-between;
+						}
+
+						.roomServiceHistoryItemContent{
+							li{
+								padding: rem(6) rem(10);
+								align-items: center;
+								justify-content: space-between;
+
+								span{
+									font-size: rem(12);
+								}
+
+								span:first-child{
+									width: 35%;
+								}
+
+								span:last-child{
+									width: 65%;
+									overflow: hidden;
+									text-overflow: ellipsis;
+									white-space: nowrap;
+									text-align: right;
+									color: #808080;
+								}
+							}
+
+							.flex-end{
+								justify-content: flex-end;
+								
+								div{
+									padding: rem(4);
+									margin-left: rem(12);
+									border-radius: rem(6);
+									font-size: rem(12);
+								}
+							}
+						}
+					}
+					.roomServiceCompelete{
+						.roomServiceHistoryItemTitle{
+							background-color: #808080;
+							color: #fff;
+						}
+						.roomServiceHistoryItemContent{
+							color: #808080;
+						}
+					}
+
+					.roomServiceCancel{
+						.roomServiceHistoryItemTitle{
+							background-color: #505050;
+							color: #fff;
+						}
+						.roomServiceHistoryItemContent{
+							color: #808080;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.empty-bar{
+		padding: rem(20) 0;
+		margin: 0 auto;
+	}
+	.content-ios, .content-md{
+		background-color: #f0f0f0 !important;
+	}
+}
+

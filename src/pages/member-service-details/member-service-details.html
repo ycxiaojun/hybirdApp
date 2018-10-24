@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>房间服务详情</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding >
+    <ul class="roomServiceForm">
+        <li class="roomServiceDetailsItem pq-flex">
+            <span>房间服务状态</span><span>{{m_lsRoomServiceStatusList[m_objRoomServiceInfo.ServiceStatus-1]}}</span>
+        </li>
+        <li class="roomServiceDetailsItem pq-flex">
+            <span>创建时间</span><span>{{m_objRoomServiceInfo.CreateTime}}</span>
+        </li>
+        <li class="roomServiceDetailsItem pq-flex">
+            <span>服务类型</span><span>{{m_objRoomServiceInfo.RoomServiceTypeName}}</span>
+        </li>
+        <li class="roomServiceDetailsItem pq-flex">
+            <span>服务子类</span><span>{{m_objRoomServiceInfo.RoomServiceSubTypeName}}</span>
+        </li>
+    </ul>
+    <textarea placeholder="" [(ngModel)]="m_objRoomServiceInfo.RoomServiceRemark" readonly></textarea>
+    <div class="operationBtn pq-flex">
+        <button ion-button (click)="toUpdateRoomService()">修改服务</button>
+        <button ion-button (click)="cancelRoomService()">取消服务</button>
+    </div>
+</ion-content>
